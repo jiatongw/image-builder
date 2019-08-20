@@ -17,7 +17,6 @@
     "kubernetes_deb_repo": null,
     "kubernetes_deb_gpg_key": null,
     "kubernetes_rpm_gpg_check": null,
-    "vnc_bind_address": "127.0.0.1",
     "vnc_port_min": "5900",
     "vnc_port_max": "6000"
   },
@@ -32,7 +31,7 @@
       "cores": 1,
       "memory": 2048,
       "disk_size": 20480,
-      "disk_type_id": 0,
+      "disk_type_id": "thin",
       "disk_adapter_type": "scsi",
       "boot_wait": "{{user `boot_wait`}}",
       "http_directory": "./linux/{{user `distro_name`}}/http/",
@@ -45,13 +44,23 @@
       "ssh_username": "{{user `ssh_username`}}",
       "ssh_password": "{{user `ssh_password`}}",
       "ssh_timeout": "4h",
+      "remote_type":"esx5",
+      "remote_host":"{{user `esxi_host`}}",
+      "remote_datastore":"{{user `esxi_datastore`}}",
+      "remote_username":"{{user `esxi_username`}}",
+      "remote_password":"{{user `esxi_password`}}",
+      "keep_registered":true,
+      "vnc_disable_password":true,
+      "vmx_data":{
+        "ethernet0.networkName":"VM Network"
+      },
       "boot_command": [
         "{{user `boot_command_prefix`}}",
         "http://{{ .HTTPIP }}:{{ .HTTPPort }}",
         "{{user `boot_command_suffix`}}"
       ],
       "shutdown_command": "echo '{{user `ssh_password`}}' | sudo -S -E {{user `shutdown_command`}}",
-      "skip_compaction": false,
+      "skip_compaction": true,
       "vnc_bind_address": "{{user `vnc_bind_address`}}",
       "vnc_port_min": "{{user `vnc_port_min`}}",
       "vnc_port_max": "{{user `vnc_port_max`}}"

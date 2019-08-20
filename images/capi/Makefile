@@ -33,7 +33,7 @@ PACKER_FLAGS += $(OLD_PACKER_FLAGS)
 
 BUILD_TARGETS := $(addprefix build-,$(BUILD_NAMES))
 $(BUILD_TARGETS):
-	cd packer && packer build $(PACKER_FLAGS) -var-file="$(abspath config/$(subst build-,,$@).json)" packer.json
+	cd packer && packer build $(PACKER_FLAGS) -var-file="$(abspath config/$(subst build-,,$@).json)" -var-file="variables.json" packer.json
 .PHONY: $(BUILD_TARGETS)
 
 CLEAN_TARGETS := $(addprefix clean-,$(BUILD_NAMES))
