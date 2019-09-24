@@ -1,0 +1,12 @@
+{
+    "vnc_bind_address": "",
+    "disk_type_id": "thin",
+    "skip_compaction": "true",
+    "remote_type": "esx5",
+    "remote_host": "",
+    "remote_datastore": "",
+    "remote_username": "",
+    "remote_password": "",
+    "vnc_disable_password": "true",
+    "format": "ova"
+}
